@@ -1,0 +1,240 @@
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
+    <h1 style="font-weight:normal">More ...</h1>
+    <button pButton type="button" (click)="visibleSidebar1 = false" label="View Today's Stats" width="100%" class="ui-button-success"></button>
+    <button pButton type="button" (click)="visibleSidebar1 = false" label="View Client Transcations" width ="100%" class="ui-button-secondary"></button>
+</p-sidebar> 
+
+ <button pButton type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right"></button> 
+
+
+        <p-tabView>
+            <p-tabPanel header="View All Transactions">
+                
+                <br>
+                <br>
+                <p-table #dt [value]="trade" dataKey="transactionid" [columns]="cols" [paginator]="true" [rows]="5" editMode="row" >
+                    <ng-template pTemplate="caption">
+                        <div style="text-align: right">        
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template>
+                
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" >
+                                {{col.header}}
+                            </th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th *ngFor="let col of columns" [ngSwitch]="col.field" >                        
+                                <p-sortIcon *ngSwitchCase="'securityName'" [pSortableColumn]="'securityName'" [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                                <input *ngSwitchCase="'buyerName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                                <input *ngSwitchCase="'sellerName'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                            </th>
+                            <th></th>
+                        </tr>                            
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                        <tr [pEditableRow]="rowData" >
+                            <td>
+                                {{rowData.transactionid}}
+                            </td>
+                            <td>
+                                {{rowData.securityName}}
+                            </td>
+
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="number" [(ngModel)]="rowData.quantity">
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{rowData.securityQuantity}}
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                            <td>
+                                {{rowData.transactionAmount}}
+                            </td>
+                            <td>
+                                {{rowData.buyerName}}
+                            </td>
+                            <td>
+                                {{rowData.sellerName}}
+                            </td>
+                            
+                            <td style="text-align:center">
+                                <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)"></button>&nbsp;&nbsp;
+                                <button *ngIf="!editing" pButton type="button" icon="pi pi-trash" class="ui-button-info"  class="ui-button-danger"(click)="onRowDelete(rowData, ri)"></button>
+                                <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(rowData,ri)"></button>
+                                <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    
+                </p-table>
+                
+                <button pButton type="button" label="Add transaction" class="ui-button-success" (click)="AddTransaction()"></button>
+                <br><br>
+                <mat-progress-bar mode="determinate" value="{{percentage}}" style="height: 15px"  aria-label="progress"></mat-progress-bar>
+                <h4 style="color:darkgreen">
+                <div  *ngIf="!disable && disable1">
+                    Netting Completed and Obligation Report generated
+                </div>
+                <div  *ngIf="!disable1 && disable2">
+                        Settlement Completed 
+                </div>
+                <div *ngIf="!disable2 ">
+                    Cost Of Settlement Report Sent to Clearing Members 
+                </div>
+            </h4>
+                <br><br>
+                <button pButton type="button" *ngIf="disable" style="margin-left: 40%" label="Netting and Obligation Report" class="ui-button-primary" (click)="doNetting()"></button>
+                <button pButton *ngIf="!disable && disable1" style="margin-left: 45%" type="button" label="Settlement" class="ui-button-primary" (click)="doSettlement()"></button>
+                <button pButton *ngIf="!disable1 && disable2" style="margin-left: 40%" type="button" label="Send Cost of Settlement Report" class="ui-button-primary" (click)="generateCSR()"></button>
+            </p-tabPanel>
+            <p-tabPanel header="Corporate Action">
+                    <p-table #dt [value]="corporateAction" dataKey="SecurityID" [columns]="cols2" [paginator]="true" [rows]="5" editMode="row" >
+
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th *ngFor="let col of columns" >
+                                        {{col.header}}
+                                    </th>
+                                    <th></th>
+                                </tr>                          
+                            </ng-template>
+                          
+                            <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+                                <tr [pEditableRow]="rowData" > 
+                          
+                          
+                                  <td *ngIf="rowData.CorporateAction===1">
+                                        
+                                        <p-cellEditor>
+                                          
+                                            <ng-template pTemplate="input">
+                                                <!-- <input pInputText type="number" [(ngModel)]="rowData.CorporateAction"> -->
+                          
+                                                <span class="ui-float-label">
+                          
+                                                <p-dropdown [options]="rowData.CorporateAction" [(ngModel)]="selectedSecurity" placeholder="Select a Security" optionLabel="securityName" [showClear]="true"></p-dropdown>
+                                                <p>Selected Security : {{selectedSecurity ? selectedSecurity.securityName : 'none'}}</p>
+                                            
+                                            </span>
+                                              </ng-template>
+                                              <ng-template pTemplate="output">
+                                                  Stock Dividents
+                                              </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                          
+                                    <td *ngIf="rowData.CorporateAction===2">
+                                        
+                                        <p-cellEditor>
+                                          
+                                            <ng-template pTemplate="input">
+                                                <input pInputText type="number" [(ngModel)]="rowData.CorporateAction">
+                                              </ng-template>
+                                              <ng-template pTemplate="output">
+                                                  Stock Split
+                                              </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    
+                                    
+                                    <td *ngIf="rowData.CorporateAction===3">
+                                        <p-cellEditor>
+                                          
+                                            <ng-template pTemplate="input">
+                                                <input pInputText type="number" [(ngModel)]="rowData.CorporateAction">
+                                              </ng-template>
+                                              <ng-template pTemplate="output">
+                                                  Corporate Rights
+                                              </ng-template>
+                                        </p-cellEditor>
+                                        
+                                    </td>
+                                    
+                                    <td>
+                                            {{rowData.SecurityName}}
+                          
+                                      </td>
+                                      <td>
+                                        <p-cellEditor>
+                                          
+                                            <ng-template pTemplate="input">
+                                                <input pInputText type="number" [(ngModel)]="rowData.CorporateRatio">
+                                              </ng-template>
+                                              <ng-template pTemplate="output">
+                                                {{rowData.CorporateRatio}}
+                                              </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                          
+                                    
+                                    <td style="text-align:center">
+                                        <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)"></button>&nbsp;&nbsp;
+                                        <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(rowData,ri)"></button>
+                                        <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            
+                          </p-table>
+            </p-tabPanel>
+            
+            <p-tabPanel header="Obligation Report" [disabled]="disable">
+                <div class="full">
+        <h2 class="heading">OBLIGATION REPORTS</h2>
+      
+                <p-dataView class="data" [value]="nettingResult">
+                        <ng-template let-clients pTemplate="listItem">
+                        <div class="oneClient">    
+                            <div class='parent grid-parent'>
+                                
+                                        <div class='child1'>
+                                            <br><br>  Participant Name:<br>
+                                                Funds: <br>
+                                                
+                                        </div>
+                                        <div class='child2'>
+                                            <br><br>  {{clients.Name}}<br>
+                                                {{clients.FundAmount}}<br>
+                                                
+                                        </div>
+                                </div>
+                                <h3>Netted Shares:</h3>
+                                <p-table class="obligation-table" [value]="clients.shares" [scrollable]="true" scrollHeight="140px">
+                                        <ng-template pTemplate="header" >
+                                            <tr>
+                                                <th *ngFor="let col of cols1">
+                                                    {{col.header}}
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-nettedShares>
+                                            <tr>
+                                                <td>
+                                                        {{nettedShares.SecurityName}}
+                                                </td>
+                                                <td>
+                                                    {{nettedShares.securityAmount}}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                        </div>       
+                        </ng-template>
+                    </p-dataView>
+           
+            </div>
+        
+            </p-tabPanel>
+                
+        </p-tabView>
+
+

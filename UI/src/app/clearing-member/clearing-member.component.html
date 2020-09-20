@@ -1,0 +1,26 @@
+<p-dataView #dv [value]="participants"  filterBy="brand"
+    [sortField]="sortField" [sortOrder]="sortOrder">
+    <ng-template let-car pTemplate="listItem">
+        <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+            <div class="ui-g-12 ui-md-3" style="text-align:center;">
+                <img src={{car.imagePath}} style=" width: 60px;height:50px;">
+            </div>
+            <div class="ui-g-12 ui-md-8 car-details">
+                <div class="ui-g">
+                    <div class="ui-g-2 ui-sm-6">Clearing Member: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{car.participantName}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Contact Number: </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{car.contactNumber}}</b></div>
+
+                    <div class="ui-g-2 ui-sm-6">Email Id </div>
+                    <div class="ui-g-10 ui-sm-6"><b>{{car.emailId}}</b></div>
+
+                   
+                </div>
+            </div>
+            
+        </div>
+    </ng-template>
+    
+</p-dataView>

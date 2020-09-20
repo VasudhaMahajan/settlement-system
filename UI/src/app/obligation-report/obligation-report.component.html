@@ -1,0 +1,45 @@
+<div class="full">
+        <h2 class="heading">OBLIGATION REPORTS</h2>
+      
+                <p-dataView class="data" [value]="client">
+                        <ng-template let-clients pTemplate="listItem">
+                        <div class="oneClient">    
+                            <div class='parent grid-parent'>
+                                
+                                        <div class='child1'>
+                                            <br><br>  Participant Name:<br>
+                                                Funds: <br>
+                                                
+                                        </div>
+                                        <div class='child2'>
+                                            <br><br>  {{clients.name}}<br>
+                                                {{clients.funds}}<br>
+                                                
+                                        </div>
+                                </div>
+                                <h3>Netted Shares:</h3>
+                                <p-table class="obligation-table" [value]="nettedShares" [scrollable]="true" scrollHeight="140px">
+                                        <ng-template pTemplate="header" >
+                                            <tr>
+                                                <th *ngFor="let col of cols">
+                                                    {{col.header}}
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-nettedShares>
+                                            <tr>
+                                                <td *ngFor="let col of cols">
+                                                        {{nettedShares[col.field]}}
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                        </div>       
+                        </ng-template>
+                    </p-dataView>
+           
+            
+        
+            
+        </div>
+        

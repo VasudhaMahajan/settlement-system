@@ -1,0 +1,11 @@
+
+{
+
+    "data":[
+        {"tradeID":1,"security":"Facebook","quantity":22000,"price":101.20,"buyer":"GS","seller":"JP Morgan"},
+        {"tradeID":2,"security":"Apple","quantity":2000,"price":99.80,"buyer":"citi","seller":"GS"},
+        {"tradeID":3,"security":"Walmart","quantity":12000,"price":4.00,"buyer":"GS","seller":"Deutsche Bank"},
+        {"tradeID":4,"security":"Apple","quantity":2000,"price":99.80,"buyer":"citi","seller":"GS"},
+        {"tradeID":5,"security":"Facebook","quantity":1000,"price":422.00,"buyer":"GS","seller":"Deutsche Bank"}
+    ]
+}

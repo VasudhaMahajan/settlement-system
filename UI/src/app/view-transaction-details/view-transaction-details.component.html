@@ -1,0 +1,25 @@
+<p-table #clientTable [value]="clientTrades"  [paginator]="true" [rows]="10" [scrollable]="true" scrollHeight="250px">
+    <ng-template pTemplate="header">
+        <tr>
+            
+            <th>BUY/SELL</th>
+            <th>SECURITY NAME</th>
+            <th>QTY</th>
+            <th>RATE</th>
+            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client>
+        <tr>
+            <td *ngIf="cId===client.buyerId && cId===client.sellerId;else notboth">Buy/Sell</td>
+            <ng-template #notboth>
+                <td *ngIf="cId === client.buyerId">Buy</td>
+                <td *ngIf="cId === client.sellerId">Sell</td>
+            </ng-template>
+            
+            <td>{{client.securityName}}</td>
+            <td>{{client.securityQuantity}}</td>
+            <td>{{client.securityRate}}</td>
+        </tr>
+    </ng-template>
+</p-table>

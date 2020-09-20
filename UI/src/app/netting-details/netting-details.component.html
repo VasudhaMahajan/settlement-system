@@ -1,0 +1,23 @@
+<div>
+    
+    <div>
+        <h3> Net Balance: Rs. {{funds}} </h3>
+    </div>
+    <div>
+        <h3> Net Equity Balance</h3>
+        <p-table [value]="shares" [rows]="10" [scrollable]="true" scrollHeight="250px">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>SECURITY NAME</th>
+                    <th>QTY</th>                 
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-bal>
+                <tr>
+                    <td>{{bal.securityName}}</td>
+                    <td>{{bal.securityQuantity}}</td>                   
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

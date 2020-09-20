@@ -1,0 +1,43 @@
+<div class="container">
+<span class="ui-float-label" style="margin-top: 20px" >
+        <input size="50"  type="number" pInputText required [(ngModel)]="TransactionId" style="width: 100%"/>
+    <label for="float-input">TransactionId</label>
+</span>
+<br>
+<span class="ui-float-label">
+        <input size="30" type="number" style="width: 100%" required pInputText [(ngModel)]="securityQuantity" />
+        <label for="float-input">Quantity</label>
+</span>
+<br>
+
+<span class="ui-float-label">
+        <input size="30" type="number" style="width: 100%" required pInputText [(ngModel)]="SecurityRate" />
+        <label for="float-input">Price</label>
+</span>
+<br>
+<span class="ui-float-label">
+ 
+        <p-dropdown [options]="securities" [(ngModel)]="selectedSecurity" placeholder="Select a Security" optionLabel="securityName" [showClear]="true"></p-dropdown><br>
+        <!-- <p>Selected Security : {{selectedSecurity ? selectedSecurity.securityName : 'none'}}</p> -->
+        
+</span>
+<br>
+<span class="ui-float-label">
+       
+    <p-dropdown [options]="participants" [(ngModel)]="selectedBuyer" placeholder="Select a Buyer" optionLabel="participantName" [showClear]="true"></p-dropdown>
+    <!-- <p>Selected Buyer : {{selectedBuyer ? selectedBuyer.participantName : 'none'}}</p> -->
+</span>
+<br>
+<span class="ui-float-label">
+        <p-dropdown [options]="participants1" [(ngModel)]="selectedSeller" placeholder="Select a Seller" optionLabel="participantName" [showClear]="true"></p-dropdown>
+        <!-- <p>Selected Seller : {{selectedSeller ? selectedSeller.participantName : 'none'}}</p> -->
+        
+</span>
+<br>
+</div>
+
+
+<button style="width: 100%" pButton type="button" label="Add Transaction" class="ui-button-success" (click)="sendData()"></button>
+
+
+

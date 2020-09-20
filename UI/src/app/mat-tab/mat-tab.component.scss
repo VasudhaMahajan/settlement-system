@@ -1,0 +1,196 @@
+
+  .sidebar-container {
+    position: fixed;
+    width: 220px;
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    //background: #1a1a1a;
+    background :#2574A9;
+    color: #fff;
+  }
+  
+  .content-container {
+    padding-top: 20px;
+  }
+  
+  .sidebar-logo {
+    padding: 5px 5px 0px 5px;
+    font-size: 20px;
+    background-color: #2574A9;
+  }
+  
+  .sidebar-navigation {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    position: relative;
+  }
+  
+  .sidebar-navigation li {
+    background-color: transparent;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    line-height: 20px;
+  }
+  
+  .sidebar-navigation li a {
+    padding: 10px 15px 10px 30px;
+    display: block;
+    color: #fff;
+  }
+  
+  .sidebar-navigation li .fa {
+    margin-right: 10px;
+  }
+  
+  .sidebar-navigation li a:active,
+  .sidebar-navigation li a:hover,
+  .sidebar-navigation li a:focus {
+    text-decoration: none;
+    outline: none;
+  }
+  
+  .sidebar-navigation li::before {
+    background-color: #1a1a1a;
+    position: absolute;
+    content: '';
+    height: 100%;
+    left: 0;
+    top: 0;
+    -webkit-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+    width: 3px;
+    z-index: -1;
+  }
+  
+  .sidebar-navigation li:hover::before {
+    width: 100%;
+  }
+  
+  .sidebar-navigation .header {
+    font-size: 12px;
+    text-transform: uppercase;
+    //background-color: #151515;
+    background-color: #1a1a1a;
+    padding: 10px 15px 10px 30px;
+  }
+  
+  .sidebar-navigation .header::before {
+    background-color: transparent;
+  }
+  
+  .content-container {
+    padding-left: 220px;
+  }
+
+.full{
+    margin-top: 60px;
+    margin-left: 50px;
+    margin-right: 50px;
+    /* border-style: dotted;
+    border-color:blue; */
+}
+
+/* .data{
+
+} */
+
+.grid-parent {
+    display: grid;
+    grid-template-columns: 200px 100px;
+    font-size: 13pt;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
+    margin-top: 20px;
+  }
+  .oneClient{
+     
+      border-bottom-color: rgb(128, 117, 117);
+        border-bottom-style: solid;
+  }
+.child1{
+    text-align: right;
+    
+}
+.child2{
+    text-align: center;
+    font-weight: bold;
+}
+  
+.heading{
+    text-align: center;
+}
+.obligation-table::ng-deep th{
+    background-color: black !important;
+    color: white !important;
+}
+.obligation-table::ng-deep td{
+    // background-color: rgb(6, 136, 218) !important;
+    //background-color: rgb(6, 136, 218) !important;
+    background-color :#2574A9 !important;
+}
+
+.header {
+  overflow: hidden;
+  background-color: rgb(25, 75, 109);
+  padding: 10px 10px;
+  //width: 110%;
+  margin-left: -20px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

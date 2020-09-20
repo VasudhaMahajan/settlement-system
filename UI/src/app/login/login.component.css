@@ -1,0 +1,68 @@
+:host{
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background-color: whitesmoke;
+    /* background-image: url("https://www.peopletrail.com/wp-content/uploads/2019/06/X.png"); */
+    /* filter: blur(8px);     */
+    min-height: 100vh;
+    background-size: cover;
+  }
+
+  .grid-parent {
+    display: grid;
+    grid-template-columns: 700px 600px;
+    border-top-color: brown;
+    display: inline-flexbox;
+  } 
+.full{
+    
+    background-color:whitesmoke;
+    box-shadow: 0 0 0 50px whitesmoke;
+    margin-bottom: 50px;
+    margin-left: 0px;
+    margin-right: 50px;
+    align-content: left;
+    /* border-radius: 25px; */
+
+}
+.heading{
+    font-weight: bold;
+    margin-left: 180px;
+    /* margin-right: 0px; */
+    margin-top: 40px;
+    color: rgba(0, 0, 0, 0.527)
+}
+.input{
+    margin-left: 0px;
+}
+.pic{
+    margin-left: 220px;
+
+}
+
+.username{
+    text-align: center;
+    color: black;
+}
+.password{
+    text-align: center;
+    color: black;
+
+}
+.ui-button-rounded{
+    margin-left: 230px;
+    background-color:rgba(231, 158, 22, 0.973);
+    font-family:'Times New Roman', Times, serif; 
+    color:black; 
+    font-size: 20px;
+    font-weight: bold;
+    border-color: orange;
+
+}
+.forgot{
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
